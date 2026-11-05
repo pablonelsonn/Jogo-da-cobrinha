@@ -1,4 +1,5 @@
 #Iniciar jogo da cobrinha projeto estudo
+#Pygame não esta sendo reconhecido 
 
 import pygame
 from pygame.locals import *

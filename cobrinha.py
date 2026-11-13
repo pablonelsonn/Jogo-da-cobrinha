@@ -35,6 +35,7 @@ while True:
             if evento.key in [K_UP, K_DOWN, K_LEFT, K_RIGHT]:
                 direcao = evento.key
 
+    # Desenha a cobra na tela e faz ela se mover de acordo com a direção
     for pos in cobra_pos:
         window.blit(cobra_surface, pos) # Usando o método blit para desenhar a cobra na tela
 

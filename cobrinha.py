@@ -39,15 +39,19 @@ while True:
     for pos in cobra_pos:
         window.blit(cobra_surface, pos) # Usando o método blit para desenhar a cobra na tela
 
+    # Atualiza a posição para a direita
         if direcao == K_RIGHT:
              cobra_pos[0] = (cobra_pos[0][0] + BLOCK_SIZE, cobra_pos[0][1]) #Movimenta a cobra para a direita
-        
+
+    # Atualiza a posição para a esquerda
         elif direcao == K_LEFT:
              cobra_pos[0] = (cobra_pos[0][0] - BLOCK_SIZE, cobra_pos[0][1]) #Movimenta a cobra para a esquerda
-
+   
+    # Atualiza a posição para cima
         elif direcao == K_UP:
              cobra_pos[0] = (cobra_pos[0][0], cobra_pos[0][1] - BLOCK_SIZE) #Movimenta a cobra para cima
-        
+
+    # Atualiza a posição para baixo
         elif direcao == K_DOWN:
             cobra_pos[0] = (cobra_pos[0][0], cobra_pos[0][1] + BLOCK_SIZE) #Movimenta a cobra para baixo
 

@@ -11,6 +11,17 @@ POS_INICIAL_X = WINDOW_WIDTH // 2
 POS_INICIAL_Y = WINDOW_HEIGHT // 2
 BLOCK_SIZE = 10
 
+def verifica_margens(pos):
+    if 0 <= pos[0] < WINDOW_WIDTH and 0 <= pos[1] < WINDOW_HEIGHT:
+        return False
+    else:
+        return True
+
+def gamer_Over():
+    print("Game Over!")
+    pygame.quit()
+    quit()
+
 
 pygame.init() # Inicia o módulo pygame
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -38,6 +49,9 @@ while True:
     # Desenha a cobra na tela e faz ela se mover de acordo com a direção
     for pos in cobra_pos:
         window.blit(cobra_surface, pos) # Usando o método blit para desenhar a cobra na tela
+
+    if verifica_margens(cobra_pos[0]):
+        gamer_Over()
 
     # Atualiza a posição para a direita
         if direcao == K_RIGHT:

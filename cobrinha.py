@@ -2,7 +2,7 @@
 #Pygame não esta sendo reconhecido 
 
 import pygame
-from pygame.locals import * 
+from pygame.locals import * # pyright: ignore[reportWildcardImportFromLibrary]
 
 # Configurações da janela do jogo
 WINDOW_WIDTH = 600

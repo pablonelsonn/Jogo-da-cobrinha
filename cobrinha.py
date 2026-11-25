@@ -3,6 +3,7 @@
 
 import pygame
 from pygame.locals import * # pyright: ignore[reportWildcardImportFromLibrary]
+import random
 
 # Configurações da janela do jogo
 WINDOW_WIDTH = 600
@@ -16,6 +17,11 @@ def verifica_margens(pos):
         return False
     else:
         return True
+
+def gera_pos_aleatoria():
+    x = random.randint(0, WINDOW_WIDTH )
+    y = random.randint(0,  WINDOW_HEIGHT ) 
+    return x // BLOCK_SIZE * BLOCK_SIZE, y // BLOCK_SIZE * BLOCK_SIZE
 
 def gamer_Over():
     print("Game Over!")
@@ -32,6 +38,10 @@ cobra_surface = pygame.Surface((BLOCK_SIZE, BLOCK_SIZE))
 cobra_surface.fill((54, 60, 74))
 direcao = K_LEFT
 
+maca_surface = pygame.Surface((BLOCK_SIZE, BLOCK_SIZE))
+maca_surface.fill((255, 0, 0))
+maca_pos = gera_pos_aleatoria() # Gera uma posição aleatória para a maçã
+
 # Loop principal do jogo
 while True: 
     pygame.time.Clock().tick(10)
@@ -42,16 +52,18 @@ while True:
             pygame.quit()
             quit()
 
-        elif evento.type == KEYDOWN:
+        elif evento.type == pygame.KEYDOWN:
             if evento.key in [K_UP, K_DOWN, K_LEFT, K_RIGHT]:
                 direcao = evento.key
 
+        if verifica_margens(cobra_pos[0]): # Verifica se a cobra saiu da tela
+                 gamer_Over() # Chama a função de game over
+
+
+    window.blit(maca_surface, maca_pos) # Desenha a maçã na tela
     # Desenha a cobra na tela e faz ela se mover de acordo com a direção
     for pos in cobra_pos:
         window.blit(cobra_surface, pos) # Usando o método blit para desenhar a cobra na tela
-
-    if verifica_margens(cobra_pos[0]):
-        gamer_Over()
 
     # Atualiza a posição para a direita
         if direcao == K_RIGHT:

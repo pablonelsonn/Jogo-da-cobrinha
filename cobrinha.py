@@ -12,6 +12,9 @@ POS_INICIAL_X = WINDOW_WIDTH // 2
 POS_INICIAL_Y = WINDOW_HEIGHT // 2
 BLOCK_SIZE = 10
 
+def colisao(pos1, pos2):
+     return pos1 == pos2
+
 def verifica_margens(pos):
     if 0 <= pos[0] < WINDOW_WIDTH and 0 <= pos[1] < WINDOW_HEIGHT:
         return False
@@ -62,6 +65,10 @@ while True:
 
     window.blit(maca_surface, maca_pos) # Desenha a maçã na tela
     # Desenha a cobra na tela e faz ela se mover de acordo com a direção
+
+    if (colisao(cobra_pos[0], maca_pos)): # Verifica se a cobra colidiu com a maçã
+         maca_pos = gera_pos_aleatoria() # Gera uma nova posição aleatória para a maçã
+
     for pos in cobra_pos:
         window.blit(cobra_surface, pos) # Usando o método blit para desenhar a cobra na tela
 
